@@ -3,104 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثبت‌نام | SkillBridge</title>
-    <style>
-        * { box-sizing: border-box; }
+    <title>ایجاد حساب کاربری</title>
 
-        body {
-            margin: 0;
-            font-family: Tahoma, sans-serif;
-            background: #f3f6fb;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    <!-- style  -->
+    <link rel="stylesheet" href="assets/css/login.css">
+    <!-- style  -->
 
-        .auth-card {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 8px 30px rgba(0,0,0,.07);
-        }
+    <!-- font  -->
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <!-- font  -->
 
-        h2 { text-align: center; color: #243b64; }
-        .subtitle { text-align: center; color: #777; margin-bottom: 28px; }
 
-        label { display: block; margin-bottom: 8px; font-size: 14px; }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dce2eb;
-            border-radius: 8px;
-            margin-bottom: 18px;
-            font-size: 14px;
-        }
-
-        input:focus { outline: none; border-color: #3867d6; }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 8px;
-            background: #3867d6;
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        button:hover { background: #2854bb; }
-        .footer { text-align: center; margin-top: 22px; font-size: 14px; }
-        a { color: #3867d6; text-decoration: none; }
-        .error { color: #dc3545; font-size: 12px; margin-top: -12px; margin-bottom: 12px; }
-    </style>
 </head>
-<body>
+<body class="font-IRANYekan">
 
-<div class="auth-card">
-    <h2>SkillBridge</h2>
-    <p class="subtitle">ایجاد حساب کاربری متخصص</p>
+<main class="page-wrapper">
 
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="register-container">
 
-        <label for="name">نام و نام خانوادگی</label>
-        <input id="name" type="text" name="name"
-               value="{{ old('name') }}" required autofocus>
-        @error('name')
-        <div class="error">{{ $message }}</div>
-        @enderror
+        <!-- FORM SECTION -->
 
-        <label for="email">ایمیل</label>
-        <input id="email" type="email" name="email"
-               value="{{ old('email') }}" required>
-        @error('email')
-        <div class="error">{{ $message }}</div>
-        @enderror
+        <section class="form-section">
 
-        <label for="password">رمز عبور</label>
-        <input id="password" type="password" name="password" required>
-        @error('password')
-        <div class="error">{{ $message }}</div>
-        @enderror
+            <div class="brand">
+                <div class="brand-logo">B</div>
 
-        <label for="password_confirmation">تکرار رمز عبور</label>
-        <input id="password_confirmation" type="password"
-               name="password_confirmation" required>
+                <div class="brand-info">
+                    <h3>Brand Name</h3>
+                    <span>سامانه یکپارچه خدمات</span>
+                </div>
+            </div>
 
-        <button type="submit">ثبت‌نام</button>
-    </form>
+            <div class="form-heading font-YekanBakh">
+                <h1>ایجاد حساب کاربری</h1>
+                <p>
+                    برای شروع، اطلاعات خود را وارد کنید و حساب کاربری
+                    جدیدتان را بسازید.
+                </p>
+            </div>
 
-    <div class="footer">
-        قبلاً ثبت‌نام کرده‌اید؟
-        <a href="{{ route('login') }}">ورود به حساب</a>
+            <form class="register-form" action="#" method="post">
+
+                <!-- Name -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="firstName font-YekanBakh">نام</label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="نام خود را وارد کنید"
+                            autocomplete="given-name"
+                            required
+                            minlength="2"
+                            maxlength="50"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName font-YekanBakh">نام خانوادگی</label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="نام خانوادگی خود را وارد کنید"
+                            autocomplete="family-name"
+                            required
+                            minlength="2"
+                            maxlength="70"
+                        >
+                    </div>
+
+                </div>
+
+                <!-- Phone -->
+
+                <div class="form-group">
+                    <label for="phone font-YekanBakh">شماره موبایل</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="09123456789"
+                        autocomplete="tel"
+                        required
+                        minlength="11"
+                        maxlength="11"
+                    >
+                </div>
+
+                <!-- Email -->
+
+                <div class="form-group">
+                    <label for="email font-YekanBakh">آدرس ایمیل</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        autocomplete="email"
+                        required
+                        minlength="6"
+                        maxlength="254"
+                    >
+                </div>
+
+                <!-- Password -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="password font-YekanBakh">رمز عبور</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="رمز عبور خود را وارد کنید"
+                            autocomplete="new-password"
+                            required
+                            minlength="8"
+                            maxlength="64"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword font-YekanBakh">تکرار رمز عبور</label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="رمز عبور را تکرار کنید"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                            minlength="8"
+                            maxlength="64"
+                        >
+                    </div>
+
+                </div>
+
+                <p class="password-hint"></p>
+
+                <!-- Terms -->
+
+                <div class="terms">
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        required
+                    >
+
+                    <label for="terms">
+                        با
+                        <a href="#">قوانین و مقررات</a>
+                        و
+                        <a href="#">حریم خصوصی</a>
+                        موافقم.
+                    </label>
+                </div>
+
+                <!-- Submit -->
+
+                <button type="submit" class="register-button">
+                    ایجاد حساب کاربری
+                </button>
+
+            </form>
+
+            <div class="login-link">
+                قبلاً ثبت‌نام کرده‌اید؟
+                <a href="{{route('login')}}">وارد حساب خود شوید</a>
+            </div>
+
+        </section>
+
+        <!-- VISUAL SECTION -->
+
+        <section class="visual-section">
+
+            <div class="visual-top">
+                <div class="welcome-badge">
+                    <span class="welcome-dot"></span>
+                    به خانواده ما خوش آمدید
+                </div>
+            </div>
+
+            <div class="visual-content">
+
+                <h2 class="font-YekanBakh">
+                    یک قدم برای شروع،
+                    <br>
+                    <span>یک مسیر برای رشد.</span>
+                </h2>
+
+                <p>
+                    حساب کاربری خود را بسازید و به دنیایی از امکانات،
+                    خدمات و فرصت‌های جدید دسترسی پیدا کنید.
+                    تجربه‌ای ساده، سریع و مطمئن در انتظار شماست.
+                </p>
+
+                <!-- Decorative Card -->
+
+                <div class="decorative-card">
+
+                    <div class="decorative-card-header">
+                        <span>تجربه‌ای ساده و هوشمند</span>
+
+                        <div class="decorative-card-icon">
+                            ✓
+                        </div>
+                    </div>
+
+                    <div class="decorative-lines">
+
+                        <div class="decorative-line">
+                            <span></span>
+                        </div>
+
+                        <div class="decorative-line">
+                            <span></span>
+                        </div>
+
+                        <div class="decorative-line">
+                            <span></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="visual-footer">
+                <span class="footer-accent"></span>
+                تجربه‌ای متفاوت، شروعی تازه
+            </div>
+
+        </section>
+
     </div>
-</div>
+
+</main>
+
+<!-- js  -->
+<script src="assets/js/archive.js" defer></script>
+<script src="assets/js/login.js" defer></script>
+<!-- js  -->
+
 
 </body>
 </html>
-

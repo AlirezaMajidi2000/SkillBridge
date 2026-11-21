@@ -18,7 +18,7 @@ class UserController extends Controller
         $users = User::with(['roles', 'permissions'])->get();
         $roles = Role::with('permissions')->get();
         $permissions = Permission::all();
-        return view('index', compact(
+        return view('index2', compact(
             'users',
             'roles',
             'permissions'
