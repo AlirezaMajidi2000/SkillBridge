@@ -22,3 +22,12 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/public/assets
+/public/fonts
+/public/admin
+*.svg
+*.ttf
+*.woff
+*.woff2
+*.eot
+*.otf

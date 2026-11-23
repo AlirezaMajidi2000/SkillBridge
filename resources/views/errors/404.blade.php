@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 | آژمان</title>
+    <link rel="stylesheet" href="{{ asset('admin/style.css') }}">
+</head>
+<body>
+<main class="login-page">
+    <section class="login-card" style="text-align:center">
+        <div class="brand" style="justify-content:center">
+            <span class="brand-mark">آ</span>
+            <span>
+                    <strong>آژمان</strong>
+                    <small>پنل مدیریت سامانه</small>
+                </span>
+        </div>
+        <div style="font-size:64px;font-weight:800;color:var(--primary)">404</div>
+        <div style="font-size:28px">⌕</div>
+        <h1>صفحه پیدا نشد</h1>
+        <p>نشانی موردنظر وجود ندارد یا جابه‌جا شده است.</p>
+        <a class="btn btn-primary" href="{{ route('admin.dashboard') }}">بازگشت به داشبورد</a>
+    </section>
+</main>
+</body>
+</html>

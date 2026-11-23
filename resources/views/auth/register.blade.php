@@ -42,8 +42,8 @@
                 </p>
             </div>
 
-            <form class="register-form" action="#" method="post">
-
+            <form class="register-form" action="{{route('register')}}" method="POST">
+            @csrf
                 <!-- Name -->
 
                 <div class="form-row">
@@ -139,10 +139,9 @@
                         <input
                             type="password"
                             id="confirmPassword"
-                            name="confirmPassword"
+                            name="password_confirmation"
                             placeholder="رمز عبور را تکرار کنید"
                             autocomplete="new-password"
-                            minlength="8"
                             required
                             minlength="8"
                             maxlength="64"

@@ -44,20 +44,26 @@
 
             <form action="{{route('login')}}" method="POST">
                 @csrf
+                @if ($errors->any())
+                    <div style="color: red">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="input-group">
-                    <label for="username"> ایمیل / شماره موبایل</label>
+                    <label for="email"> ایمیل / شماره موبایل</label>
 
                     <div class="input-wrapper">
                         <i class="fa-regular fa-user"></i>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
+                            id="email"
+                            name="login"
                             placeholder="ایمیل یا شماره موبایل خود را وارد کنید"
                             autocomplete="username"
                             required
-                            minlength="4"
-                            maxlength="20"
+
                         >
                     </div>
                     <p id="userNameHint"></p>
