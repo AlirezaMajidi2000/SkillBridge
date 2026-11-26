@@ -39,7 +39,7 @@ Route::get('/test-role/{role}', [UserController::class, 'fetchRole']);
 
 
 Route::middleware(['auth' , 'role:Admin'])->group(function (){
-    Route::put('/admin/users/{user}' , [AdminDashboardController::class, 'updateRole'])->name('admin.user.updateRole');
+//    Route::put('/admin/users/{user}' , [AdminDashboardController::class, 'updateRole'])->name('admin.user.updateRole');
     Route::get('/admin/dashboard' , [AdminDashboardController::class , 'index'])->name('admin.dashboard');
     Route::get('/admin/users' , [AdminDashboardController::class , 'usersIndex'])->name('admin.users');
     Route::get('/admin/roles' , [AdminDashboardController::class , 'rolesIndex'])->name('admin.roles');
@@ -51,6 +51,12 @@ Route::middleware(['auth' , 'role:Admin'])->group(function (){
     Route::get('/admin/reports' , [AdminDashboardController::class , 'reportsIndex'])->name('admin.reports');
     Route::get('/admin/settings' , [AdminDashboardController::class , 'settingsIndex'])->name('admin.settings');
     Route::get('/admin/profile' , [AdminDashboardController::class , 'profileIndex'])->name('admin.profile');
+    Route::get('/admin/roles/data', [AdminDashboardController::class, 'getRoles'])->name('admin.roles.data');
+    Route::delete('/admin/roles/{role}', [AdminDashboardController::class, 'deleteRole'])->name('admin.roles.destroy');
+
+    Route::post('/admin/users', [AdminDashboardController::class, 'store'])->name('admin.users.store');
+    Route::put('/admin/users/{user}', [AdminDashboardController::class, 'update'])->name('admin.users.update');
+
 
 
     Route::post('/admin/permissions' , [AdminDashboardController::class , 'addPermission'])->name('admin.permissions.store');

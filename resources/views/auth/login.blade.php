@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -74,6 +73,7 @@
 
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lock"></i>
+
                         <input
                             type="password"
                             id="password"
@@ -82,7 +82,17 @@
                             autocomplete="current-password"
                             required
                         >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                            aria-label="نمایش رمز عبور"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
                     </div>
+
                     <p id="passwordHint"></p>
                 </div>
 
@@ -93,10 +103,9 @@
                         مرا به خاطر بسپار
                     </label>
 
-                    <a href="#" class="forgot-password">
+                    <a href="{{ route('password.request') }}" class="forgot-password">
                         فراموشی رمز عبور؟
                     </a>
-
                 </div>
 
                 <button type="submit" class="login-button">

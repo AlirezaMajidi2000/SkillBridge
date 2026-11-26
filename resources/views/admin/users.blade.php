@@ -136,14 +136,16 @@
 
 @endsection
 
-
 @php
     $usersData = $users->map(function ($user) {
         return [
             'id' => $user->id,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
             'name' => $user->name,
-            'username' => $user->email,
+            'phone' => $user->phone,
             'email' => $user->email,
+            'username' => $user->email,
             'role' => $user->getRoleNames()->first(),
             'date' => $user->created_at->format('Y/m/d'),
             'dateValue' => $user->created_at->timestamp,

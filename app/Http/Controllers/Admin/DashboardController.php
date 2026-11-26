@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -54,6 +55,17 @@ class DashboardController extends Controller
     {
         Gate::authorize('view-admin-dashboard');
         return view('admin.roles');
+    }
+
+    public function getRoles()
+    {
+        Gate::authorize('view-admin-dashboard');
+
+        $roles = Role::with('permissions')
+            ->where('guard_name', 'web')
+            ->get();
+
+        return response()->json($roles);
     }
 
     public function opportunitiesIndex()
@@ -129,15 +141,61 @@ class DashboardController extends Controller
         return($user_roles);
     }
 
+
     public function createRole(Request $request)
     {
-        $role = Role::create([
-         'name' => $request->create_role,
-         'guard' => 'web'
+        Gate::authorize('view-admin-dashboard');
+
+        $validated = $request->validate([
+            'role' => ['required', 'string', 'max:255'],
+
+            'englishName' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z][a-zA-Z0-9_-]*$/',
+                Rule::unique('roles', 'name')
+                    ->where('guard_name', 'web'),
+            ],
+
+            'permissions' => ['required', 'array', 'min:1'],
+
+            'permissions.*' => [
+                'required',
+                'string',
+                'in:users.create,users.delete,users.view,users.edit,roles.create,roles.delete,roles.view'
+            ],
         ]);
 
-        return 'role added'. $role->id;
+        $role = DB::transaction(function () use ($validated) {
+
+            $role = Role::create([
+                'name' => $validated['englishName'],
+                'display_name' => $validated['role'],
+                'guard_name' => 'web',
+            ]);
+
+            $permissions = [];
+
+            foreach ($validated['permissions'] as $permissionName) {
+
+                $permissions[] = Permission::firstOrCreate([
+                    'name' => $permissionName,
+                    'guard_name' => 'web',
+                ]);
+            }
+
+            $role->syncPermissions($permissions);
+
+            return $role;
+        });
+
+        return response()->json([
+            'message' => 'نقش با موفقیت ثبت شد.',
+            'role' => $role->load('permissions'),
+        ], 201);
     }
+
     public function addPermission(Request $request)
     {
         $permission = Permission::create([
@@ -147,26 +205,65 @@ class DashboardController extends Controller
         return 'permission'.$permission->name. 'added';
     }
 
+
     public function update(Request $request, User $user)
     {
+        Gate::authorize('view-admin-dashboard');
+
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'username' => [
+            'first_name' => ['required', 'string', 'max:255'],
+
+            'last_name' => ['required', 'string', 'max:255'],
+
+            'phone' => [
                 'required',
                 'string',
+                Rule::unique('users', 'phone')->ignore($user->id),
+            ],
+
+            'email' => [
+                'required',
+                'email',
                 Rule::unique('users', 'email')->ignore($user->id),
             ],
-            'role' => ['required', 'exists:roles,name,guard_name,web'],
+
+            'role' => [
+                'required',
+                Rule::exists('roles', 'name')->where('guard_name', 'web'),
+            ],
         ]);
 
         $user->update([
-            'name' => $validated['name'],
-            'email' => $validated['username'],
+            'first_name' => $validated['first_name'],
+
+            'last_name' => $validated['last_name'],
+
+            'name' => $validated['first_name'] . ' ' . $validated['last_name'],
+
+            'phone' => $validated['phone'],
+
+            'email' => $validated['email'],
         ]);
 
-        $user->syncRoles($validated['role']);
+        $user->syncRoles([$validated['role']]);
 
-        return back()->with('success', 'اطلاعات کاربر با موفقیت ویرایش شد.');
+        return response()->json([
+            'message' => 'اطلاعات کاربر با موفقیت ویرایش شد.',
+
+            'user' => [
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'email' => $user->email,
+                'username' => $user->email,
+                'role' => $user->getRoleNames()->first(),
+                'date' => $user->created_at->format('Y/m/d'),
+                'dateValue' => $user->created_at->timestamp,
+                'status' => 'success',
+            ],
+        ]);
     }
 
     public function destroy(User $user)
@@ -174,5 +271,64 @@ class DashboardController extends Controller
         $user->delete();
 
         return back()->with('success', 'کاربر با موفقیت حذف شد.');
+    }
+
+
+    public function deleteRole(Role $role)
+    {
+        Gate::authorize('view-admin-dashboard');
+
+        if ($role->name === 'Admin') {
+            return response()->json([
+                'message' => 'امکان حذف نقش مدیر اصلی وجود ندارد.'
+            ], 403);
+        }
+
+        $role->delete();
+
+        return response()->json([
+            'message' => 'نقش با موفقیت حذف شد.'
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        Gate::authorize('view-admin-dashboard');
+
+        $validated = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'unique:users,phone'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8'],
+            'role' => ['required', 'exists:roles,name,guard_name,web'],
+        ]);
+
+        $user = User::create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'name' => $validated['first_name'] . ' ' . $validated['last_name'],
+            'phone' => $validated['phone'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+        ]);
+
+        return response()->json([
+            'message' => 'کاربر با موفقیت ایجاد شد.',
+
+            'user' => [
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'email' => $user->email,
+                'username' => $user->email,
+                'role' => $user->getRoleNames()->first(),
+                'date' => $user->created_at->format('Y/m/d'),
+                'dateValue' => $user->created_at->timestamp,
+                'status' => 'success',
+            ],
+        ], 201);
     }
 }

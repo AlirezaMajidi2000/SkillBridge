@@ -310,5 +310,14 @@
 @endsection
 
 @push('scripts')
+
+    <script>
+        window.rolesDataUrl = "{{ route('admin.roles.data') }}";
+        window.rolesStoreUrl = "{{ route('admin.roles.store') }}";
+        window.rolesDeleteUrl = "{{ route('admin.roles.destroy', ':id') }}";
+    </script>
+
     <script src="{{ asset('admin/assets/js/roles.js') }}"></script>
+
 @endpush
+
