@@ -265,12 +265,21 @@ class DashboardController extends Controller
             ],
         ]);
     }
-
     public function destroy(User $user)
     {
+        Gate::authorize('view-admin-dashboard');
+
+        if ($user->id === auth()->id()) {
+            return response()->json([
+                'message' => 'نمی‌توانید حساب کاربری خودتان را حذف کنید.'
+            ], 403);
+        }
+
         $user->delete();
 
-        return back()->with('success', 'کاربر با موفقیت حذف شد.');
+        return response()->json([
+            'message' => 'کاربر با موفقیت حذف شد.'
+        ]);
     }
 
 
