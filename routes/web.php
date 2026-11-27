@@ -57,6 +57,12 @@ Route::middleware(['auth' , 'role:Admin'])->group(function (){
     Route::post('/admin/users', [AdminDashboardController::class, 'store'])->name('admin.users.store');
     Route::put('/admin/users/{user}', [AdminDashboardController::class, 'update'])->name('admin.users.update');
 
+    Route::get('/admin/users', [AdminDashboardController::class, 'usersIndex'])->name('admin.users');
+
+
+
+
+    Route::delete('/admin/users/{user}', [AdminDashboardController::class, 'destroy'])->name('admin.users.destroy');
 
 
     Route::post('/admin/permissions' , [AdminDashboardController::class , 'addPermission'])->name('admin.permissions.store');
