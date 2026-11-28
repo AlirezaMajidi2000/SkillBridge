@@ -1,0 +1,1106 @@
+
+/* =========================================
+   AJMAN - ROLES & PERMISSIONS
+   Unified DataTable Design
+========================================= */
+
+
+/* =========================================
+   2. TABLE CARD
+========================================= */
+
+.access-card {
+    padding: 20px;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+
+/* =========================================
+   3. TABLE TITLE
+========================================= */
+
+.access-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.access-section-title h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.access-section-title p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* =========================================
+   4. DATATABLE CONTROLS
+========================================= */
+
+.access-card .datatable-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+
+/* Search */
+
+.access-search-box {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    min-width: 200px;
+}
+
+.access-search-box > i {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.access-card .datatable-search {
+    width: 100%;
+    min-height: 40px;
+    padding: 9px 38px 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.access-card .datatable-search:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(32, 104, 108, 0.08);
+}
+
+
+/* Row Limit */
+
+.access-card .datatable-limit {
+    min-width: 105px;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.access-card .datatable-limit:focus {
+    border-color: var(--primary);
+}
+
+
+/* =========================================
+   5. TABLE
+========================================= */
+
+.access-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.access-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-table th {
+    padding: 14px 12px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.access-table th[data-sort] {
+    cursor: pointer;
+    user-select: none;
+}
+
+.access-table th[data-sort] i {
+    margin-right: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.access-table th[data-sort]:hover,
+.access-table th[data-sort]:hover i {
+    color: var(--primary);
+}
+
+.access-table td {
+    padding: 13px 12px;
+    color: var(--text);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.access-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+}
+
+.access-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.access-table tbody tr:hover {
+    background: var(--mint-soft);
+}
+
+
+/* =========================================
+   6. USER CELL
+========================================= */
+
+.access-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 175px;
+}
+
+.access-avatar {
+    width: 37px;
+    height: 37px;
+    flex: 0 0 37px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--mint-soft);
+    color: var(--primary);
+    font-size: 16px;
+}
+
+.access-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.access-user-info strong {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.access-user-info small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   7. ROLE BADGE
+========================================= */
+
+.access-role {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: var(--mint-soft);
+    color: var(--deep);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   8. PERMISSION COUNT
+========================================= */
+
+.access-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--soft);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   9. USER STATUS
+========================================= */
+
+.access-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: #e5f5ed;
+    color: #198754;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.access-status.inactive {
+    background: #fcebec;
+    color: #c0394b;
+}
+
+
+/* =========================================
+   10. TABLE ACTION
+========================================= */
+
+.access-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.access-action {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--primary);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.access-action:hover {
+    border-color: var(--primary);
+    background: var(--mint-soft);
+    color: var(--deep);
+}
+
+
+/* =========================================
+   11. EMPTY STATE
+========================================= */
+
+.access-empty {
+    padding: 35px 15px !important;
+    text-align: center;
+    color: var(--muted);
+}
+
+.access-empty i {
+    font-size: 25px;
+    color: var(--muted);
+}
+
+.access-empty p {
+    margin: 10px 0 0;
+}
+
+
+/* =========================================
+   12. DATATABLE FOOTER
+========================================= */
+
+.access-card .datatable-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.access-card .datatable-info {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =========================================
+   13. PAGINATION
+========================================= */
+
+.access-card .datatable-pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.access-card .pagination-btn {
+    min-width: 34px;
+    min-height: 34px;
+    padding: 5px 9px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.access-card .pagination-btn:hover:not(:disabled):not(.active) {
+    background: var(--mint-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.access-card .pagination-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.access-card .pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   14. SIDEBAR OVERLAY
+========================================= */
+
+.access-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(16, 39, 33, 0.42);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.access-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================
+   15. ACCESS SIDEBAR
+========================================= */
+
+.access-sidebar {
+    position: fixed;
+    top: 28px;
+    left: 0;
+    z-index: 101;
+
+    width: min(460px, 100%);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--surface);
+    box-shadow: 12px 0 35px rgba(20, 67, 55, 0.12);
+
+    direction: rtl;
+
+    transform: translateX(-105%);
+    transition: transform 0.3s ease;
+}
+
+.access-sidebar.open {
+    transform: translateX(0);
+}
+
+
+/* =========================================
+   16. SIDEBAR HEADER
+========================================= */
+
+.access-sidebar-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 22px;
+
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #f5faf8, #fff);
+}
+
+.access-sidebar-caption {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.access-sidebar-header h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.access-sidebar-header p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.access-close {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: #fff;
+    color: var(--muted);
+
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.access-close:hover {
+    background: #fdecee;
+    border-color: #f3c5ca;
+    color: var(--danger);
+}
+
+
+/* =========================================
+   17. SIDEBAR BODY
+========================================= */
+
+.access-sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 22px;
+}
+
+.access-user-box {
+    margin-bottom: 22px;
+}
+
+.access-user-box label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.access-user-box select {
+    width: 100%;
+    min-height: 44px;
+    padding: 9px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: #fff;
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.access-user-box select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(32, 104, 108, 0.1);
+}
+
+
+/* =========================================
+   18. PERMISSION GROUPS
+========================================= */
+
+.access-group {
+    margin-bottom: 13px;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    background: #fff;
+}
+
+.access-group-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 14px 15px;
+
+    border: 0;
+    background: #f8faf9;
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: right;
+
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.access-group-header:hover {
+    background: var(--soft);
+}
+
+.access-group-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.access-group-title > span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.access-group-title strong {
+    font-size: 14px;
+}
+
+.access-group-title small {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.access-group-icon {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+    background: var(--mint-soft);
+    color: var(--primary);
+
+    font-size: 17px;
+}
+
+.access-chevron {
+    color: var(--muted);
+    font-size: 13px;
+    transition: transform 0.25s ease;
+}
+
+.access-group.open .access-chevron {
+    transform: rotate(180deg);
+}
+
+.access-group-content {
+    display: none;
+    padding: 14px 15px;
+    border-top: 1px solid var(--border);
+}
+
+.access-group.open .access-group-content {
+    display: block;
+}
+
+
+/* =========================================
+   19. SELECT ALL
+========================================= */
+
+.access-select-all {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 11px 12px;
+    margin-bottom: 12px;
+
+    border-radius: 9px;
+    background: var(--mint-soft);
+    color: var(--deep);
+
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.access-select-all span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* =========================================
+   20. PERMISSION ITEMS
+========================================= */
+
+.access-permission {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 11px 10px;
+
+    border-bottom: 1px solid #edf2ef;
+    border-radius: 8px;
+
+    color: #43564e;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.access-permission:last-of-type {
+    border-bottom: 0;
+}
+
+.access-permission:hover {
+    background: #f8faf9;
+}
+
+.access-permission span {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.access-permission span i {
+    width: 18px;
+    color: var(--primary);
+    text-align: center;
+}
+
+.access-permission input,
+.access-select-all input {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+
+/* =========================================
+   21. PERMISSION SUMMARY
+========================================= */
+
+.access-summary {
+    margin-top: 12px;
+    padding-top: 10px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   22. SIDEBAR FOOTER
+========================================= */
+
+.access-sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 16px 22px;
+
+    border-top: 1px solid var(--border);
+    background: #fff;
+}
+
+.access-cancel,
+.access-save {
+    min-height: 42px;
+    padding: 9px 17px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.access-cancel {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+}
+
+.access-cancel:hover {
+    background: #f4f7f6;
+}
+
+.access-save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+}
+
+.access-save:hover {
+    border-color: var(--primary-dark);
+    background: var(--primary-dark);
+}
+
+
+/* =========================================
+   23. RESPONSIVE
+========================================= */
+
+@media (max-width: 760px) {
+
+    .access-card {
+        padding: 14px;
+    }
+
+    .access-card .datatable-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .access-search-box {
+        max-width: none;
+        min-width: 0;
+    }
+
+    .access-card .datatable-limit {
+        width: 100%;
+    }
+
+    .access-table-wrap {
+        overflow-x: auto;
+    }
+
+    .access-card .datatable-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .access-card .datatable-pagination {
+        width: 100%;
+    }
+
+    .access-sidebar {
+        width: min(430px, 100%);
+    }
+
+    .access-sidebar-header {
+        padding: 17px;
+    }
+
+    .access-sidebar-body {
+        padding: 16px;
+    }
+
+    .access-sidebar-footer {
+        padding: 13px 16px;
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .access-section-title h2 {
+        font-size: 17px;
+    }
+
+    .access-section-title p {
+        font-size: 12px;
+    }
+
+    .access-sidebar-header h3 {
+        font-size: 18px;
+    }
+
+    .access-group-header {
+        padding: 12px;
+    }
+
+    .access-group-content {
+        padding: 11px;
+    }
+
+    .access-sidebar-footer > button {
+        flex: 1;
+        padding: 9px 10px;
+    }
+
+}
+
+/* ////////////////////////////////////////////////// */
+
+
+
+
+/* ================================
+   Access Page Layout
+================================ */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.content {
+    padding: 27px 0px 35px !important;
+}
+
+/* چیدمان جدول و پنل دسترسی */
+.access-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+
+    width: 100%;
+    padding: 24px 24px;
+    box-sizing: border-box;
+
+    min-width: 0;
+}
+
+/* جدول سمت راست */
+.access-page {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+}
+
+/* کارت جدول */
+.access-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* اسکرول افقی جدول */
+.access-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* پنل دسترسی */
+.access-sidebar {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    transform: none;
+    width: 100%;
+
+    min-width: 0;
+    align-self: stretch;
+    height: auto;
+
+    border-radius: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* هدر پنل */
+.access-sidebar-header {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* محتوای داخلی پنل - دو ستون */
+.access-sidebar-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 14px;
+
+    flex: 1;
+    min-height: 0;
+    padding: 20px;
+}
+
+/* انتخاب کاربر تمام عرض */
+.access-user-box {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+/* گروه‌های دسترسی */
+.access-sidebar-body > .access-group {
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+/* محتوای گروه‌ها */
+.access-group-content {
+    padding: 12px;
+}
+
+/* فوتر پنل */
+.access-sidebar-footer {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+/* فوتر اصلی صفحه */
+.main > .footer {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* فاصله‌گذاری بخش‌های بالایی */
+.main > .crumb,
+.main > .page-head {
+    margin-right: 24px;
+    margin-left: 24px;
+    box-sizing: border-box;
+}
+
+.main > .crumb {
+    margin-top: 27px;
+}
+
+.main > .page-head {
+    margin-bottom: 0 !important;
+}
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 1100px) {
+
+    .access-layout {
+        flex-direction: column;
+    }
+
+    .access-sidebar {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .access-layout {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .access-sidebar {
+        border-radius: 12px;
+    }
+
+    .access-sidebar-body {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .access-user-box {
+        grid-column: 1;
+    }
+
+}
+
+/* اینپوت های هدر جدول تغییرات دسترسی و... */
+
+.access-user-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.access-user-box input {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: #fff;
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.access-user-box input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(32, 104, 108, 0.1);
+}
+
+@media (max-width: 600px) {
+    .access-user-box {
+        flex-direction: column;
+    }
+
+    .access-user-box input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

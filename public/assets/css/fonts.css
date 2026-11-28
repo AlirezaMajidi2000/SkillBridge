@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'IRANYekan';
+    src: url('../fonts/IRANYekanX\ Pro/IRANYekanX-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'YekanBakh';
+    src: url('../fonts/Yekan\ Bakh\ Variable/YekanBakh-VF.ttf');
+}
+
+.font-IRANYekan{
+    font-family: 'IRANYekan';
+}
+
+.font-YekanBakh{
+    font-family: 'YekanBakh';
+}

@@ -1,0 +1,22 @@
+
+/* ============================================
+   Users Datatable Filter
+============================================ */
+
+.datatable-controls .user-filter {
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text, #18332d);
+    background-color: #fff;
+    border: 1px solid #e2e9e6;
+    border-radius: 8px;
+    padding: 9px 12px;
+    outline: none;
+    cursor: pointer;
+    min-width: 145px;
+    transition: border-color 0.2s ease;
+}
+
+.datatable-controls .user-filter:focus {
+    border-color: var(--primary, #20686c);
+}
